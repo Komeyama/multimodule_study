@@ -5,9 +5,15 @@ plugins {
     id("kotlin-android")
 }
 
+android {
+    defaultConfig {
+        applicationId = "com.komeyama.multimodule.study"
+    }
+}
 apply(rootProject.file("gradle/android.gradle"))
 
 dependencies {
+    implementation(project(":feature:feature_a"))
     implementation(Dep.Kotlin.stdLib)
     implementation(Dep.AndroidX.coreKts)
     implementation(Dep.AndroidX.appCompat)
