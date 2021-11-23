@@ -6,6 +6,7 @@ plugins {
 }
 
 apply(rootProject.file("gradle/android.gradle"))
+android.buildFeatures.viewBinding = true
 
 dependencies {
     implementation(Dep.Kotlin.stdLib)
