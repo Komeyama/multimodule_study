@@ -9,6 +9,7 @@ apply(rootProject.file("gradle/android.gradle"))
 android.buildFeatures.viewBinding = true
 
 dependencies {
+    implementation(project(":data:usecase_a"))
     implementation(Dep.Kotlin.stdLib)
     implementation(Dep.AndroidX.coreKts)
     implementation(Dep.AndroidX.appCompat)
