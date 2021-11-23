@@ -1,6 +1,8 @@
 package com.komeyama.multimodule.study.repository_a
 
+import com.komeyama.multimodule.study.db_a.DataBaseA
 import com.komeyama.multimodule.study.repository_a.internal.RepositoryAModule
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -13,7 +15,9 @@ interface RepositoryAComponent {
 
     @Component.Factory
     interface Factory {
-        fun create(): RepositoryAComponent
+        fun create(
+            @BindsInstance dataBaseA: DataBaseA
+        ): RepositoryAComponent
     }
 
     companion object {

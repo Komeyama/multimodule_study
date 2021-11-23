@@ -1,6 +1,5 @@
 package com.komeyama.multimodule.study.usecase_a
 
-import android.content.Context
 import com.komeyama.multimodule.study.repository_a.RepositoryA
 import com.komeyama.multimodule.study.usecase_a.internal.UseCaseAModule
 import dagger.BindsInstance
@@ -17,7 +16,6 @@ interface UseCaseAComponent {
     @Component.Factory
     interface Factory {
         fun create(
-            @BindsInstance context: Context,
             @BindsInstance repositoryA: RepositoryA
         ): UseCaseAComponent
     }

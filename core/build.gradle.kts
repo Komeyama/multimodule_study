@@ -11,6 +11,7 @@ apply(rootProject.file("gradle/android.gradle"))
 dependencies {
     implementation(project(":data:usecase_a"))
     implementation(project(":data:repository_a"))
+    implementation(project(":data:db_a"))
     implementation(Dep.Kotlin.stdLib)
     implementation(Dep.Dagger.dagger)
     kapt(Dep.Dagger.annotationProcessor)

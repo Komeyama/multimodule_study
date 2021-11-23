@@ -9,7 +9,6 @@ plugins {
 apply(rootProject.file("gradle/android.gradle"))
 
 dependencies {
-    implementation(project(":data:db_a"))
     implementation(Dep.Kotlin.stdLib)
     implementation(Dep.Dagger.dagger)
     kapt(Dep.Dagger.annotationProcessor)
