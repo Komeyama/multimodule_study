@@ -2,3 +2,4 @@ rootProject.name = "multimodule_study"
 include ':app'
 include ':feature:feature_a'
 include ':data:usecase_a'
+include ':core'

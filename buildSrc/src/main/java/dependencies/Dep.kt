@@ -28,6 +28,17 @@ object Dep {
         const val material = "com.google.android.material:material:$version"
     }
 
+    object Dagger {
+        private const val version = "2.40.1"
+        const val dagger = "com.google.dagger:dagger:$version"
+        const val annotationProcessor = "com.google.dagger:dagger-compiler:$version"
+    }
+
+    object Timber {
+        private const val version = "5.0.1"
+        const val timber = "com.jakewharton.timber:timber:$version"
+    }
+
     object Test {
         const val junit = "junit:junit:4.+"
 
