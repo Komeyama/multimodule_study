@@ -15,6 +15,8 @@ object Dep {
     object AndroidX {
         const val coreKts = "androidx.core:core-ktx:1.6.0"
         const val appCompat = "androidx.appcompat:appcompat:1.3.1"
+        const val coreKtx = "androidx.core:core-ktx:1.6.0"
+        const val fragmentKtx = "androidx.fragment:fragment-ktx:1.3.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.1"
 
         object Test {

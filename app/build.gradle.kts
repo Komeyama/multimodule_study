@@ -19,6 +19,7 @@ dependencies {
     implementation(Dep.Kotlin.stdLib)
     implementation(Dep.AndroidX.coreKts)
     implementation(Dep.AndroidX.appCompat)
+    implementation(Dep.AndroidX.fragmentKtx)
     implementation(Dep.Material.material)
     implementation(Dep.AndroidX.constraintLayout)
     implementation(Dep.Dagger.dagger)
