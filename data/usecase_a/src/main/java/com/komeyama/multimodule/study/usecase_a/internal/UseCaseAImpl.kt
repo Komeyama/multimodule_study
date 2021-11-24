@@ -5,9 +5,8 @@ import com.komeyama.multimodule.study.usecase_a.UseCaseA
 import dagger.Module
 import dagger.Provides
 import timber.log.Timber
-import javax.inject.Inject
 
-internal class UseCaseAImpl @Inject constructor(
+internal class UseCaseAImpl constructor(
     private val repositoryA: RepositoryA
 ) : UseCaseA {
     override fun serviceA1() {
