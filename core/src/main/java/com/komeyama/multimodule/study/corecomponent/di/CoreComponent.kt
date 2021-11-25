@@ -13,8 +13,8 @@ interface CoreComponent {
     @Component.Builder
     interface Builder {
         fun build(): CoreComponent
-        fun coreModule(coreModule: CoreModule): Builder
+        fun coreModule(coreModule: CoreModule): Builder // 引数ありのmoduleは引数で渡さないといけないため
     }
 
-    fun useCaseA(): UseCaseA
+    fun useCaseA(): UseCaseA // FeatureAViewModelで必要なため
 }

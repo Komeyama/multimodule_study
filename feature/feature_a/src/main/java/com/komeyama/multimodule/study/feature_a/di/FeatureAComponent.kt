@@ -1,5 +1,6 @@
 package com.komeyama.multimodule.study.feature_a.di
 
+import androidx.lifecycle.ViewModelProvider
 import com.komeyama.multimodule.study.corecomponent.di.CoreComponent
 import com.komeyama.multimodule.study.corecomponent.di.ModuleScope
 import com.komeyama.multimodule.study.corecomponent.di.ViewModelModule
@@ -23,6 +24,8 @@ interface FeatureAComponent {
         fun build(): FeatureAComponent
         fun coreComponent(coreComponent: CoreComponent): Builder
     }
+
+    fun viewModelFactory(): ViewModelProvider.Factory
 
     fun inject(activity: FeatureAFragment)
 }

@@ -3,25 +3,27 @@ package com.komeyama.multimodule.study
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
+import com.komeyama.multimodule.study.corecomponent.di.CoreComponent
+import com.komeyama.multimodule.study.di.AppComponent
 import com.komeyama.multimodule.study.di.DaggerAppComponent
 import com.komeyama.multimodule.study.feature_a.FeatureAFragment
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var coreComponent: CoreComponent
+    private lateinit var component: AppComponent
 
-    private val viewModel: MainViewModel by viewModels(factoryProducer = { viewModelFactory })
+    private val viewModel: MainViewModel by viewModels(factoryProducer = {
+        (DaggerAppComponent.builder().build().viewModelFactory())
+    })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setFragment()
 
-        val coreComponent = (application as MainApplication).coreComponent
-        val component = DaggerAppComponent
+        coreComponent = (application as MainApplication).coreComponent
+        component = DaggerAppComponent
             .builder()
             .coreComponent(coreComponent)
             .build()

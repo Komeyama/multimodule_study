@@ -3,25 +3,28 @@ package com.komeyama.multimodule.study.feature_a
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import com.komeyama.multimodule.study.corecomponent.di.CoreComponent
 import com.komeyama.multimodule.study.corecomponent.di.CoreComponentProvider
 import com.komeyama.multimodule.study.feature_a.di.DaggerFeatureAComponent
-import javax.inject.Inject
+import com.komeyama.multimodule.study.feature_a.di.FeatureAComponent
 
 class FeatureAFragment : Fragment(R.layout.fragment_a) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var coreComponent: CoreComponent
+    private lateinit var component: FeatureAComponent
 
-    private val viewModel: FeatureAViewModel by viewModels(factoryProducer = { viewModelFactory })
+    private val viewModel: FeatureAViewModel by viewModels(factoryProducer = {
+        (component.viewModelFactory())
+    })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val coreComponent =
+
+        coreComponent =
             (requireActivity().application as? CoreComponentProvider)?.provideCoreComponent()
                 ?: throw IllegalStateException()
 
-        val component = DaggerFeatureAComponent
+        component = DaggerFeatureAComponent
             .builder()
             .coreComponent(coreComponent)
             .build()
