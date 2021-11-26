@@ -1,7 +1,8 @@
 rootProject.name = "multimodule_study"
 include ':app'
-include ':feature:feature_a'
-include ':data:usecase_a'
 include ':core'
+include ':feature:feature_a'
+include ':feature:feature_b'
+include ':data:usecase_a'
 include ':data:repository_a'
 include ':data:db_a'

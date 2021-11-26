@@ -1,4 +1,4 @@
-package com.komeyama.multimodule.study.feature_a
+package com.komeyama.multimodule.study.feature_b
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,39 +9,47 @@ import androidx.fragment.app.viewModels
 import com.komeyama.multimodule.study.corecomponent.di.CoreComponent
 import com.komeyama.multimodule.study.corecomponent.di.CoreComponentProvider
 import com.komeyama.multimodule.study.corecomponent.di.FragmentKey
-import com.komeyama.multimodule.study.feature_a.databinding.FragmentABinding
-import com.komeyama.multimodule.study.feature_a.di.DaggerFeatureAComponent
-import com.komeyama.multimodule.study.feature_a.di.FeatureAComponent
+import com.komeyama.multimodule.study.feature_b.databinding.FragmentFeatureBBinding
+import com.komeyama.multimodule.study.feature_b.di.DaggerFeatureBComponent
+import com.komeyama.multimodule.study.feature_b.di.FeatureBComponent
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import timber.log.Timber
 import javax.inject.Inject
 
-class FeatureAFragment @Inject constructor(var router: FeatureARouter): Fragment(R.layout.fragment_a) {
+class FeatureBFragment @Inject constructor(private var router: FeatureBRouter) :
+    Fragment(R.layout.fragment_feature_b) {
+
+    companion object {
+        const val TITLE_KEY = "title_key"
+    }
 
     private lateinit var coreComponent: CoreComponent
-    private lateinit var component: FeatureAComponent
-    private var _binding: FragmentABinding? = null
+    private lateinit var component: FeatureBComponent
+    private var _binding: FragmentFeatureBBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: FeatureAViewModel by viewModels(factoryProducer = {
+    private val viewModel: FeatureBViewModel by viewModels(factoryProducer = {
         (component.viewModelFactory())
     })
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val args = arguments?.getString(TITLE_KEY)
+        Timber.d("args: $args")
+
         coreComponent =
             (requireActivity().application as? CoreComponentProvider)?.provideCoreComponent()
                 ?: throw IllegalStateException()
 
-        component = DaggerFeatureAComponent
+        component = DaggerFeatureBComponent
             .builder()
             .coreComponent(coreComponent)
             .build()
 
         component.inject(this)
-        viewModel.serviceA1()
     }
 
     override fun onCreateView(
@@ -49,15 +57,14 @@ class FeatureAFragment @Inject constructor(var router: FeatureARouter): Fragment
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentABinding.inflate(inflater, container, false)
+        _binding = FragmentFeatureBBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
-        Timber.d("viewModelA: $viewModel")
         binding.button.setOnClickListener {
-            router.navigateToFeatureB("detail title")
+            router.navigateToFeatureA()
         }
     }
 
@@ -65,14 +72,13 @@ class FeatureAFragment @Inject constructor(var router: FeatureARouter): Fragment
         super.onDestroy()
         _binding = null
     }
-
 }
 
 @Module
-interface FeatureAFragmentModule {
+interface FeatureBFragmentModule {
 
     @Binds
     @IntoMap
-    @FragmentKey(FeatureAFragment::class)
-    fun bindFeatureAFragment(fragment: FeatureAFragment): Fragment
+    @FragmentKey(FeatureBFragment::class)
+    fun bindFeatureAFragment(fragment: FeatureBFragment): Fragment
 }

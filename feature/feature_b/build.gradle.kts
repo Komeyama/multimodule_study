@@ -1,22 +1,17 @@
 import dependencies.Dep
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
 }
 
-android {
-    defaultConfig {
-        applicationId = "com.komeyama.multimodule.study"
-    }
-}
 apply(rootProject.file("gradle/android.gradle"))
+android.buildFeatures.viewBinding = true
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":feature:feature_a"))
-    implementation(project(":feature:feature_b"))
+    implementation(project(":data:usecase_a"))
     implementation(Dep.Kotlin.stdLib)
     implementation(Dep.AndroidX.coreKts)
     implementation(Dep.AndroidX.appCompat)
