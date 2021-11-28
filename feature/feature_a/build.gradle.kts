@@ -22,6 +22,7 @@ dependencies {
     kapt(Dep.Dagger.annotationProcessor)
     implementation(Dep.Timber.timber)
     testImplementation(Dep.Test.junit)
+    testImplementation(Dep.Mockk.mockK)
     androidTestImplementation(Dep.AndroidX.Test.junit)
     androidTestImplementation(Dep.AndroidX.Test.espressoCore)
 }

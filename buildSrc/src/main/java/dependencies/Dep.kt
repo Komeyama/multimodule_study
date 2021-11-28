@@ -43,6 +43,10 @@ object Dep {
 
     object Test {
         const val junit = "junit:junit:4.+"
+    }
 
+    object Mockk {
+        private const val version = "1.12.1"
+        const val mockK = "io.mockk:mockk:$version"
     }
 }
