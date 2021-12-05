@@ -43,6 +43,11 @@ object Dep {
 
     object Test {
         const val junit = "junit:junit:4.+"
+
+        object Robolectric {
+            private const val version = "4.7.3"
+            const val robolectric = "org.robolectric:robolectric:$version"
+        }
     }
 
     object Mockk {

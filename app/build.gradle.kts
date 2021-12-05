@@ -10,6 +10,9 @@ android {
     defaultConfig {
         applicationId = "com.komeyama.multimodule.study"
     }
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 apply(rootProject.file("gradle/android.gradle"))
 
@@ -26,7 +29,11 @@ dependencies {
     implementation(Dep.Dagger.dagger)
     kapt(Dep.Dagger.annotationProcessor)
     implementation(Dep.Timber.timber)
+
     testImplementation(Dep.Test.junit)
+    testImplementation(Dep.AndroidX.Test.junit)
+    testImplementation(Dep.Test.Robolectric.robolectric)
+
     androidTestImplementation(Dep.AndroidX.Test.junit)
     androidTestImplementation(Dep.AndroidX.Test.espressoCore)
 }
